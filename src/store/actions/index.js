@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGIN_FAILED } from "./types"
+import { USER_LOGIN, USER_LOGIN_FAILED, USER_LOGOUT } from "./types"
 import axios from 'axios';
 
 export const loginAction = ({email, password}) => async dispatch => {
@@ -18,4 +18,11 @@ export const loginAction = ({email, password}) => async dispatch => {
     })
     console.log(err)
   }
-}
+};
+
+export const logoutAction = () => {
+  localStorage.removeItem('token');
+  return {
+    type: USER_LOGOUT
+  }
+};

@@ -1,4 +1,4 @@
-import { USER_LOGIN, USER_LOGIN_FAILED } from "../actions/types";
+import { USER_LOGIN, USER_LOGIN_FAILED, USER_LOGOUT } from "../actions/types";
 
 export default function loginReducer(state={}, action) {
   switch(action.type) {
@@ -14,6 +14,12 @@ export default function loginReducer(state={}, action) {
         error: action.payload,
         token: ''
       }
+      case USER_LOGOUT :
+        return {
+          ...state,
+          token: '',
+          error: ''
+        }
     default:
       return state;
   }
