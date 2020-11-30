@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SideNav from 'react-simple-sidenav';
 import { navItems } from '../../utils/items';
 
 const Sidebar = (props) => {
-  
-  const items = navItems.items.map((item, index)=>(
-    <div key={index}>
-      <Link to={item.url} onClick={props.setHideSidebar}>
-        <p className="pl-4 pt-2"> <i className={item.icon}></i> {item.title}</p>
-      </Link>
-    </div>
-  ))
-  const admin = navItems.admin.map((item, index)=>(
-    <div key={index}>
-      <Link to={item.url} onClick={props.setHideSidebar}>
-        <p className="pl-4 pt-2"> <i className={item.icon}></i> {item.title}</p>
-      </Link>
-    </div>
-  ))
+  const auth = useSelector(state => state.login.token);
+
+  const items = navItems.items.map((item, index) => {
+    if(!auth || !item.restricted){
+      return (
+        <div key={index}>
+          <Link to={item.url} onClick={props.setHideSidebar}>
+            <p className="pl-4 pt-2"> <i className={item.icon}></i> {item.title}</p>
+          </Link>
+        </div>
+      )
+    }
+  })
+  const admin = navItems.admin.map((item, index) => {
+    if(auth && item.restricted){
+     return (
+      <div key={index}>
+        <Link to={item.url} onClick={props.setHideSidebar}>
+          <p className="pl-4 pt-2"> <i className={item.icon}></i> {item.title}</p>
+        </Link>
+      </div>
+    )
+  }
+  })
   return (
     <SideNav
       showNav= {props.showNav}

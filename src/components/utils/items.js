@@ -3,17 +3,20 @@ export const navItems = {
     { 
       title: "Home",
       icon: "fas fa-clipboard-list",
-      url: "/"
+      url: "/",
+      restricted: false
     },
     { 
       title: "Sign In",
       icon: "fas fa-sign-in-alt",
-      url: "login"
+      url: "login",
+      restricted: true
     },
     { 
       title: "Register",
       icon: "fas fa-clipboard-check",
-      url: "register"
+      url: "register",
+      restricted: true
     },
 
   ],
@@ -21,12 +24,14 @@ export const navItems = {
     {
       title: "Sign Out",
       icon: "fas fa-sign-out-alt",
-      url: "logout"
+      url: "logout",
+      restricted: true
     },
     {
       title: "Admin",
       icon: "fas fa-user-cog",
-      url: "admin"
+      url: "admin",
+      restricted: true
     }
   ]
 }
