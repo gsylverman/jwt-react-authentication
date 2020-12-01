@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SideNav from 'react-simple-sidenav';
@@ -17,17 +17,19 @@ const Sidebar = (props) => {
         </div>
       )
     }
+    return [];
   })
   const admin = navItems.admin.map((item, index) => {
     if(auth && item.restricted){
-     return (
-      <div key={index}>
-        <Link to={item.url} onClick={props.setHideSidebar}>
-          <p className="pl-4 pt-2"> <i className={item.icon}></i> {item.title}</p>
-        </Link>
-      </div>
-    )
-  }
+       return (
+        <div key={index}>
+          <Link to={item.url} onClick={props.setHideSidebar}>
+            <p className="pl-4 pt-2"> <i className={item.icon}></i> {item.title}</p>
+          </Link>
+        </div>
+      )
+    }
+  return [];
   })
   return (
     <SideNav
