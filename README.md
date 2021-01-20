@@ -1,1 +1,1 @@
-# jwt-react-authentication
+# JWT-react-authentication
